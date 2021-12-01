@@ -2,20 +2,19 @@
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "Stmt007133654416",
+            "Sid": "Stmt{aws_account_id}",
             "Action": [
-                "dynamodb:BatchGetItem",
-                "dynamodb:GetItem",
-                "dynamodb:Query",
-                "dynamodb:Scan"
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem"
             ],
             "Effect": "Allow",
-            "Resource": "arn:aws:dynamodb:us-east-1:007133654416:table/Person"
+            "Resource": "arn:aws:dynamodb:us-east-1:{aws_account_id}:table/{table_name}"
         },
         {
             "Effect": "Allow",
             "Action": "logs:CreateLogGroup",
-            "Resource": "arn:aws:logs:us-east-1:007133654416:*"
+            "Resource": "arn:aws:logs:us-east-1:{aws_account_id}:*"
         },
         {
             "Effect": "Allow",
@@ -24,7 +23,7 @@
                 "logs:PutLogEvents"
             ],
             "Resource": [
-                "arn:aws:logs:us-east-1:007133654416:log-group:/aws/lambda/readLambda:*"
+                "arn:aws:logs:us-east-1:{aws_account_id}:log-group:/aws/lambda/writeLambda:*"
             ]
         }
     ]
